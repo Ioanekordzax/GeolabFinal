@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Delete Product
+{% endblock %}
+
+{% block body %}
+<style>
+    .card-custom .card-img-top {
+        height: 250px;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        {% for product in products %}
+        {% include "fragments/product_delete_card.html" %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

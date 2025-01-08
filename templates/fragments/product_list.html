@@ -1,0 +1,12 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+        <img src="static/images/{{ product.image }}" alt="Item 1" class="item-image">
+        {{ product.name }}
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {{ cart_form.hidden_tag() }}
+        <input type="text" name="productId" value="{{ product.id }}" style="display:none;">
+        <span class="badge badge-success badge-pill" style="margin-right: 20px;">{{ product.price }}₾</span>
+        {{ cart_form.removeFromCart(class="btn btn-danger") }}
+    </form>
+</li>

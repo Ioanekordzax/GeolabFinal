@@ -1,0 +1,104 @@
+<style>
+    .custom-navbar {
+        background-color: #004080 !important;
+    }
+    .custom-navbar .nav-link, .custom-navbar .navbar-brand {
+        color: #ffffff !important;
+    }
+    .custom-navbar .navbar-toggler {
+        border-color: #ffffff !important;
+    }
+    .custom-navbar .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+    }
+    .custom-navbar .nav-link {
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .custom-navbar .nav-link:hover {
+        background-color: #003366;
+    }
+    .custom-navbar .btn-outline-light {
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .custom-navbar .btn-outline-light:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+    .custom-navbar .form-inline {
+        justify-content: center;
+    }
+    .custom-navbar .form-inline {
+        flex-grow: 1;
+    }
+    .custom-navbar .input-group {
+        width: 99%;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+    <a class="navbar-brand" href="/">KitsSki</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0 mx-auto" method="post" enctype="multipart/form-data">
+            {{ search_form.hidden_tag() }}
+            <div class="input-group">
+                {{ search_form.searchBar(class="form-control", placeholder="Search") }}
+                <div class="input-group-append">
+                    {{ search_form.searchButton(class="btn btn-primary", type="submit") }}
+                </div>
+            </div>
+        </form>
+        <ul class="navbar-nav ml-auto">
+             {% if current_user.is_authenticated %}
+                {% if current_user.role == 'Admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addProduct">Add Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deleteProduct">Delete Product</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/addProduct">Add Product</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Signup</a>
+                </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="/favorite">
+                    <i class="fas fa-heart"></i> Favorites
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cart">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
